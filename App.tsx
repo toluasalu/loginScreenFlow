@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
-import { MaterialIcons, Ionicons, AntDesign } from '@expo/vector-icons';
+import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import { useFonts } from 'expo-font';
+import AppLoading from 'expo-app-loading';
+import { useFonts, Roboto_500Medium } from '@expo-google-fonts/roboto';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import RegisterScreen from './Register';
@@ -21,7 +22,7 @@ const LoginScreen = ({ navigation }: any) => {
             source={require('./assets/paper-plane.png')} />
         </View>
         <Text style={{
-          fontFamily: 'Roboto-Medium',
+          fontFamily: 'Roboto_500Medium',
           fontSize: 28,
           fontWeight: '500',
           color: '#333',
@@ -107,23 +108,25 @@ const styles = StyleSheet.create({
 
 export default function App() {
   const [loaded] = useFonts({
-    'Roboto-Medium': require('./assets/fonts/Roboto-Medium.ttf'),
+    Roboto_500Medium,
   });
 
   if (!loaded) {
-    return null;
+    return <AppLoading />;
+  } else {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='Login'>
+          <Stack.Screen name='Login' component={LoginScreen} />
+          <Stack.Screen name='Register' component={RegisterScreen} />
+
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
   }
 
 
-  return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='Login'>
-        <Stack.Screen name='Login' component={LoginScreen} />
-        <Stack.Screen name='Register' component={RegisterScreen} />
 
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
 }
 
 
