@@ -40,7 +40,7 @@ const RegisterScreen = ({ navigation }: any) => {
                         source={require('./assets/paper-plane.png')} />
                 </View>
                 <Text style={{
-                    fontFamily: 'Roboto-Medium',
+                    fontFamily: 'Roboto_500Medium',
                     fontSize: 28,
                     fontWeight: '500',
                     color: '#333',
