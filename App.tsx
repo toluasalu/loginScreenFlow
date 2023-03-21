@@ -3,11 +3,13 @@ import AppLoading from 'expo-app-loading';
 import { useFonts, Roboto_500Medium } from '@expo-google-fonts/roboto';
 import { AuthProvider } from './context/AuthContext';
 import Navigation from './navigation/Navigation';
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 
 export default function App() {
-  
-   
+
+
   const [loaded] = useFonts({
     Roboto_500Medium,
   });
@@ -16,9 +18,11 @@ export default function App() {
     return <AppLoading />;
   } else {
     return (
-      <AuthProvider>
-         <Navigation />
-      </AuthProvider>
+      <Provider store={store}>
+        <AuthProvider>
+          <Navigation />
+        </AuthProvider>
+      </Provider>
     );
   }
 
