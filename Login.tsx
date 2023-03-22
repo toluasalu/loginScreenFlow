@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
-import React, { useContext, useState } from 'react';
-import { AuthContext } from './context/AuthContext';
+import React, { useState } from 'react';
+import { loginUser } from './store/authSlice';
+import { useDispatch} from "react-redux";
 
 
 
@@ -11,8 +12,8 @@ import { AuthContext } from './context/AuthContext';
 const LoginScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
-
-  const { login } = useContext(AuthContext);
+  const dispatch = useDispatch();
+ 
 
   return (
     <SafeAreaView style={styles.container}>
@@ -71,7 +72,7 @@ const LoginScreen = ({ navigation }: any) => {
 
         </View>
         <TouchableOpacity
-          onPress={() => { login(email, password) }}
+          onPress={() => { dispatch(loginUser({email, password})) }}
           style={{ backgroundColor: '#AD40AF', padding: 20, borderRadius: 10, marginBottom: 30 }}>
           <Text style={{ textAlign: 'center', fontWeight: '700', fontSize: 16, color: '#fff' }}>Login</Text>
         </TouchableOpacity>

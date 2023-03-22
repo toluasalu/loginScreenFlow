@@ -2,16 +2,20 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { ActivityIndicator, View } from "react-native";
 import { AuthContext } from '../context/AuthContext';
-import { useContext } from 'react';
+import { authSlice } from "../store/authSlice";
+
 import AppStack from '../AppStack';
 import AuthStack from '../AuthStack';
+import { useSelector, useDispatch  } from "react-redux";
 
 
 
 
 const Navigation = () => {
 
-    const {isLoading, userToken} = useContext(AuthContext);
+    //const {isLoading, userToken} = useContext(AuthContext);
+    const isLoading = useSelector((state) => state.user.loading);
+    const userToken = useSelector((state) => state.user.token);
     
      if(isLoading){
            return(

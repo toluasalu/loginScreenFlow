@@ -19,9 +19,7 @@ export default function App() {
   } else {
     return (
       <Provider store={store}>
-        <AuthProvider>
-          <Navigation />
-        </AuthProvider>
+        <Navigation />
       </Provider>
     );
   }

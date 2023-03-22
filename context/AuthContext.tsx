@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [userToken, setUserToken] = useState<string | null>(null);
     const [userInfo, setUserInfo] = useState(null);
-    const dispatch = useDispatch();
+   
 
     const login = (username, password) => {
 
@@ -19,29 +19,7 @@ export const AuthProvider = ({ children }) => {
 
 
         setIsLoading(true);
-        axios.post('http://192.168.80.115:4000/login', {
-            name: username,
-            password
-        }, {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        }).then(res => {
-
-            if (res.status === 201) {
-                let userInfo = res.data
-                setUserInfo(userInfo)
-                setUserToken(userInfo.accessToken)
-                AsyncStorage.setItem('userInfo', userInfo)
-                AsyncStorage.setItem('userToken', userInfo.accessToken)
-                dispatch(loginSlice.actions.addUser({ name: username, password, userToken }))
-            }
-
-            console.log(res.data)
-            console.log('User Token: ' + res.data.accessToken)
-
-        })
-            .catch(err => console.log(err))
+        
 
 
         setIsLoading(false);
