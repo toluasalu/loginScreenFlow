@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { ActivityIndicator, View } from "react-native";
 import { AuthContext } from '../context/AuthContext';
 import { authSlice } from "../store/authSlice";
-
 import AppStack from '../AppStack';
 import AuthStack from '../AuthStack';
 import { useSelector, useDispatch  } from "react-redux";

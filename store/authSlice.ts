@@ -1,4 +1,4 @@
-import { createSlice, createSelector, createAsyncThunk  } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk  } from "@reduxjs/toolkit";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
@@ -13,7 +13,6 @@ const initialState = {
     
     
 }
-
 
 
 //Sign up logic
@@ -32,11 +31,11 @@ export const createUser = createAsyncThunk('createUser', async(body) => {
 })
 
 //Login logic
-export const loginUser = createAsyncThunk('loginUser', async({username, password}) => {
+export const loginUser = createAsyncThunk('loginUser', async({email, password}) => {
     
 
      const res = await axios.post('http://192.168.80.115:4000/login', {
-        name: username,
+        name: email,
         password
     }, {
         headers: {
@@ -50,13 +49,7 @@ export const loginUser = createAsyncThunk('loginUser', async({username, password
 })
 
 
-    
-
-
-
-
-
-export const authSlice = createSlice({
+const authSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
@@ -111,4 +104,18 @@ export const authSlice = createSlice({
 })
 
 
+
+
+
+
+    
+
+
+
+
+
+
+
 export const { addToken, addUser, logoutUser} = authSlice.actions;
+
+export default authSlice.reducer;

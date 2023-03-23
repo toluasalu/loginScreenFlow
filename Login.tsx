@@ -10,8 +10,8 @@ import { useDispatch} from "react-redux";
 
 
 const LoginScreen = ({ navigation }: any) => {
-  const [email, setEmail] = useState<string | null>(null);
-  const [password, setPassword] = useState<string | null>(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
  
 
